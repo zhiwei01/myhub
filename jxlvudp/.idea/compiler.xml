@@ -6,13 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jxlvudp" />
-        <module name="webStandardProject" />
+        <module name="udpf" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="jxlvudp" target="1.5" />
-      <module name="webStandardProject" target="1.5" />
+      <module name="udpf" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

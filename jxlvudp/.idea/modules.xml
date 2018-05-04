@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/jxlvudp.iml" filepath="$PROJECT_DIR$/jxlvudp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/udpf.iml" filepath="$PROJECT_DIR$/udpf.iml" />
     </modules>
   </component>
 </project>

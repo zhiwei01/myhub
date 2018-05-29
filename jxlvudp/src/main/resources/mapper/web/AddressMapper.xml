@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="mapper.AddressMapper">
+    <resultMap id="BaseResultMap" type="kesun.entity.web.Address">
+        <id column="id"  property="id" />
+        <result column="name" property="name" />
+        <result column="tel" property="tel" />
+        <result column="post" property="post" />
+        <result column="address" property="address" />
+        <result column="sendtime" property="sendtime" />
+        <result column="issend" property="issend" />
+        <result column="isdefault" property="isdefault" />
+
+
+
+    </resultMap>
+    <insert id="insert" parameterType="kesun.entity.web.Address">
+       insert into address (id, name, tel,
+      post, address,sendtime,issend,isdefault)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
+      #{post,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sendtime,jdbcType=VARCHAR}, #{issend,jdbcType=VARCHAR}
+      ,#{isdefault,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="kesun.entity.web.Address">
+      update address
+    set name = #{name,jdbcType=VARCHAR},
+     tel= #{tel,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+      sendtime = #{ sendtime,jdbcType=VARCHAR}
+      issend = #{ issend,jdbcType=VARCHAR}
+      isdefault = #{ isdefault,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        *
+        from address
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectForObject" parameterType="java.util.Map"  resultType="java.util.Map">
+        select *
+        from address where
+        where
+        <trim  suffixOverrides="or">
+            <if test="id!=null">
+                id like '%${id}%' or
+            </if>
+            <if test="name!=null">
+                name like '%${name}%' or
+            </if>
+        </trim>
+        order by name ASC
+    </select>
+
+    <select id="getRowsCount" parameterType="java.util.Map"  resultType="java.lang.Integer">
+        select count(1) as total from address
+        where
+        <trim  suffixOverrides="or">
+            <if test="id!=null">
+                id like '%${id}%' or
+            </if>
+            <if test="name!=null">
+                name like '%${name}%' or
+            </if>
+        </trim>
+    </select>
+    <select id="findByPage" parameterType="java.util.Map"  resultType="java.util.Map">
+        select *
+        from address where
+        <trim  suffixOverrides="or">
+            <if test="id!=null">
+                id like '%${id}%' or
+            </if>
+            <if test="name!=null">
+                name like '%${name}%' or
+            </if>
+        </trim>
+
+        order by name ASC
+        <if test="start !=0 or limit!=0">
+            limit #{start},#{limit}
+        </if>
+    </select>
+    <!--判断数据是否在使用中-->
+    <!--<select id="findInUseById" parameterType="java.lang.String" resultType="java.util.Map">-->
+    <!--select id from website where id=#{id,jdbcType=VARCHAR}-->
+    <!--</select>-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from address
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>
